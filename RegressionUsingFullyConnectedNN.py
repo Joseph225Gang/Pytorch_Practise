@@ -60,7 +60,7 @@ hid = 10
 loss_fn = torch.nn.MSELoss()
 
 model = torch.nn.Sequential(torch.nn.Linear(inp, hid), 
-                            torch.nn.ReLU,
+                            torch.nn.ReLU(),
                             torch.nn.Dropout(p=0.2),
                             torch.nn.Linear(hid,out))
 
