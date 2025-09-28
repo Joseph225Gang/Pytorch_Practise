@@ -59,7 +59,10 @@ hid = 10
 
 loss_fn = torch.nn.MSELoss()
 
-model = torch.nn.Sequential(torch.nn.Linear(inp, hid), torch.nn.Linear(hid,out))
+model = torch.nn.Sequential(torch.nn.Linear(inp, hid), 
+                            torch.nn.ReLU,
+                            torch.nn.Dropout(p=0.2),
+                            torch.nn.Linear(hid,out))
 
 x = torch.zeros(10, inp)
 y = model(x)
@@ -72,7 +75,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
 
 total_step = len(train_loader)
 
-num_epochs = 2000
+num_epochs = 1000
 
 for epoch in range(num_epochs + 1) :
     for i, (features, target) in enumerate(train_loader):
